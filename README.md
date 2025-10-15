@@ -1,86 +1,198 @@
-# 🛠️ Surface Defect Detection using Deep Learning  
+<p align="center">
+  <img src="https://img.shields.io/badge/Framework-FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white" alt="FastAPI"/>
+  <img src="https://img.shields.io/badge/Docker-Ready-0db7ed?style=flat-square&logo=docker&logoColor=white" alt="Docker"/>
+  <img src="https://img.shields.io/badge/Deployed%20On-AWS%20EC2-232f3e?style=flat-square&logo=amazonaws&logoColor=white" alt="AWS EC2"/>
+  <img src="https://img.shields.io/badge/Model-MobileNetV2-4285F4?style=flat-square&logo=tensorflow&logoColor=white" alt="MobileNetV2"/>
+  <img src="https://img.shields.io/badge/Frontend-Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" alt="Streamlit"/>
+</p>
 
-## 📌 Project Overview  
-This project focuses on **automated surface defect detection** in steel quality assurance. Surface defects are common in industrial production and can significantly impact the safety and durability of the final product. The goal is to build a **deep learning model** that classifies six common types of steel surface defects, providing a scalable alternative to manual inspection.  
+<h1 align="center">🧠 Surface Defect Detection using Transfer Learning (MobileNetV2)</h1>
 
-**Defect classes:**  
-- Crazing (Cr)  
-- Inclusion (In)  
-- Patches (Pa)  
-- Pitted Surface (PS)  
-- Rolled-in Scale (RS)  
-- Scratches (Sc)  
+<p align="center">
+  <b>End-to-End Machine Learning & MLOps project integrating TensorFlow, TFLite, FastAPI, Docker, and AWS EC2.</b><br>
+  Detects and classifies <b>steel surface defects</b> using a lightweight deep learning model optimized for deployment.<br>
+  Deployed on both <a href="http://51.21.196.228:8000/docs" target="_blank">AWS EC2</a> and 
+  <a href="https://huggingface.co/spaces/arafatMahmood/Surface_defect_detection" target="_blank">Hugging Face Spaces</a>.
+</p>
 
-## 📊 Dataset  
+---
+
+# 🧠 Surface Defect Detection using Transfer Learning (MobileNetV2)
+
+### 🚀 End-to-End Machine Learning Project  
+**TensorFlow • TFLite • FastAPI • Docker • AWS EC2 • Hugging Face Spaces**
+
+This project demonstrates an **end-to-end ML and MLOps pipeline** — from model training to production deployment.  
+It focuses on detecting and classifying **surface defects on steel materials** using **transfer learning**, **TensorFlow Lite optimization**, and **cloud deployment** via **AWS EC2** and **Hugging Face Spaces**.
+
+---
+
+## 📊 Dataset
+
 - **Source:** [NEU Surface Defect Database (Kaggle)](https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database)  
-- **Size:** 1,800 grayscale images (300 per defect class)  
-- **Split:** 240 training, 60 testing samples per class  
-- **Preprocessing:**  
-  - Resized to 224×224 RGB  
-  - Normalized pixel values (0–1)  
-  - Data augmentation (random flips, rotations, zoom, contrast, translations)  
+- **Classes (6):**
+  - Crazing  
+  - Inclusion  
+  - Patches  
+  - Pitted Surface  
+  - Rolled-in Scale  
+  - Scratches  
 
-## ⚙️ Methodology  
-1. **Data Pipeline**  
-   - Preprocessed images into TensorFlow datasets  
-   - Created shuffled and batched datasets for training, validation, and testing  
+Each image shows a unique type of steel surface defect used to train and validate the model.
 
-2. **Model Architecture**  
-   - **Backbone:** MobileNetV2 (transfer learning)  
-   - **Regularization:** Dropout (0.5), L2 penalty  
-   - **Loss function:** Categorical Crossentropy with label smoothing  
-   - **Optimizer:** Adam (learning rate = 1e-5)  
+---
 
-3. **Training Strategy**  
-   - Early stopping & model checkpointing  
-   - TensorBoard monitoring  
-   - 5-fold cross-validation  
+## 🧩 Project Workflow
 
-4. **Evaluation Metrics**  
-   - Accuracy, Precision, Recall, F1-score (macro)  
-   - Confusion matrix  
-   - Class-wise precision/recall  
+### 1. Data Preparation & Preprocessing
+- Loaded image paths and labels into lists (`defect_images`, `defect_labels`)
+- Defined a TensorFlow-based preprocessing pipeline to normalize and resize images
+- Created efficient data batches for training, validation, and testing
 
-## 📈 Results  
-- **Validation Accuracy:** 95.1%  
-- **Test Performance:**  
-  - Accuracy: **96.4%**  
-  - Precision: **96.5%**  
-  - Recall: **96.4%**  
+### 2. Model Architecture
+- **Base Model:** MobileNetV2 (pre-trained on ImageNet)
+- **Enhancements:**
+  - Data Augmentation (flip, rotate, zoom, contrast)
+  - Dropout (0.5)
+  - L2 regularization (0.04)
+  - Label smoothing (0.1)
 
-- **Per-Class Performance:**  
-  - Crazing – Precision: 0.95, Recall: 0.95  
-  - Inclusion – Precision: 0.98, Recall: 0.95  
-  - Patches – Precision: 0.95, Recall: 1.00  
-  - Pitted Surface – Precision: 1.00, Recall: 0.88  
-  - Rolled-in Scale – Precision: 0.95, Recall: 1.00  
-  - Scratches – Precision: 0.95, Recall: 1.00  
+### 3. Training Configuration
+- Optimizer: `Adam (1e-5)`
+- Loss: `CategoricalCrossentropy`
+- Epochs: `50`
+- Batch Size: `32`
+- Callbacks: `TensorBoard`, `EarlyStopping (patience=3)`, `ModelCheckpoint`
 
-Grad-CAM visualizations confirmed that the model learned **discriminative regions** for each defect class.  
+---
 
-## 🚀 Next Steps  
-- **Deployment:** FastAPI backend, containerization with Docker, and deployment on Render/AWS.  
-- **Extensions:**  
-  - Scale to larger industrial datasets  
-  - Integrate into real-time quality assurance pipelines  
+## 📈 Model Performance
+- Training Accuracy: 84.7%
+- Validation Accuracy: 84.0%
+- Test Accuracy: 86.7%
+- Precision: 0.8961
+- Recall: 0.8667
 
-## 🚀 Quick Start  
-1. Clone the repo and install dependencies:  
-   ```bash
-   pip install -r requirements.txt
+----
 
-2. Download the dataset from Kaggle.
+## 📸 Sample Prediction Visualization
 
-3. Open surface-defect-detection.ipynb in Jupyter/Colab and run all cells to train and evaluate the model.
+#### Top 3 predictions Visualization
+![Top 3 predictions](top3_prediction.png)
 
-## 🛠️ Tech Stack  
-- Python  
-- TensorFlow/Keras  
-- NumPy, Pandas, Matplotlib  
-- scikit-learn  
-- Docker (deployment)  
+----
+## ⚙️ Model Optimization (TensorFlow Lite)
 
-## 📂 Repository Structure  
-├── notebooks/           # surface-defect-detection.ipynb
-├── requirements.txt     
-├── README.md     
+To ensure lightweight deployment, the trained TensorFlow model was **converted to TensorFlow Lite (.tflite)** format.  
+This reduced the model size drastically while maintaining accuracy, making it ideal for Docker and edge deployment.
+
+```python
+converter = tf.lite.TFLiteConverter.from_keras_model(model)
+converter.target_spec.supported_ops = [
+    tf.lite.OpsSet.TFLITE_BUILTINS,
+    tf.lite.OpsSet.SELECT_TF_OPS
+]
+tflite_model = converter.convert()
+
+----
+
+## 🧩 API Deployment (FastAPI + Docker + AWS EC2 + Hugging Face Spaces)
+
+### 1. FastAPI Inference Service 
+- /health   →  Service health check  
+- /predict  →  Predict surface defect type  
+
+### 2. Dockerization
+- Built with **Python 3.10-slim** base image
+- Installed only essential dependencies (**tflite-runtime**)
+- Final Image size ~ **385 MB**
+
+### 3. Cloud Housing
+#### 🌐 **AWS EC2 Deployment**
+- **Ubuntu Server** instance  
+- Docker installed and image pulled from **Docker Hub**  
+- Port **8000** exposed to the internet via security group rules  
+- Live API Docs: [FastAPI Endpoint 🔗](http://51.21.196.228:8000/docs)
+
+#### 🤗 **Hugging Face Spaces Deployment**
+- Hosted interactive demo using **Sreamlit**  
+- Deployed app: [Surface Defect Detection 🔗](https://huggingface.co/spaces/arafatMahmood/Surface_defect_detection)
+
+## 🧰 Tech Stack
+-------------------------------------------------
+| Stage             | Tools / Libraries                       |
+|-------------------|-----------------------------------------|
+| Data Processing   | TensorFlow, NumPy                       |
+| Model Building    | MobileNetV2, Keras                      |
+| Optimization      | TensorFlow Lite                         |
+| API Framework     | FastAPI                                 |
+| Containerization  | Docker                                  |
+| Cloud Deployment  | AWS EC2 (Ubuntu), Hugging Face Spaces   |
+| Frontend Demo     | Streamlit                               |
+
+---
+
+## 🧪 API Usage
+- Endpoint: POST /predict
+- Response:
+ {
+  "predicted_label": "patches",
+  "confidence": 0.9457
+}
+
+----
+
+## 📦 Docker Commands
+
+- Build the image
+docker build -t surface_defect_api:v1  .
+
+- Run locally
+docker run -p 8000:8000 surface_defect_api:v1
+
+- Tag and push to Docker Hub
+docker tag surface_defect_api:v1 arafatmahmood12/surface_defect_api:v1
+
+docker push arafatmahmood12/surface_defect_api:v1
+
+---
+
+##💡 Key Learnings
+
+- Implemented Transfer Learning effectively with MobileNetV2
+- Enhanced dataset using data augmentation to prevent overfitting
+- Optimized model deployment via TensorFlow Lite
+- Built and deployed a production-ready API using FastAPI, Docker, and AWS EC2
+- Understood the full ML lifecycle: Data → Model → Deployment
+-
+
+---
+
+## 👤 Author & Contact
+
+**Mahmood Arafat**  
+💼 AI Engineer | Machine Learning & MLOps Enthusiast  
+
+<p align="left">
+  <a href="https://www.linkedin.com/in/arafat-mahmood-3b0208213/" target="_blank">
+    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/>
+  </a>
+  <a href="https://github.com/ArafatMahmood45" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-171515?style=for-the-badge&logo=github&logoColor=white" alt="GitHub"/>
+  </a>
+  <a href="mailto:Mahmoodarafat08@gmail.com">
+    <img src="https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/>
+  </a>
+</p>
+
+<p align="center">
+  🌍 Deployed on <a href="https://huggingface.co/spaces/arafatMahmood/Surface_defect_detection" target="_blank">Hugging Face Spaces</a> |
+  ☁️ Hosted via <a href="http://51.21.196.228:8000/docs" target="_blank">AWS EC2 FastAPI Endpoint</a>
+</p>
+
+---
+
+⭐ **If you like this project, consider giving it a star!**  
+That helps others discover it and supports my journey in **AI Engineering & MLOps** 🚀
+
+
