@@ -148,14 +148,13 @@ docker push arafatmahmood12/surface_defect_api:v1
 ```
 ---
 
-##💡 Key Learnings
+## 💡 Key Learnings
 
 - Implemented Transfer Learning effectively with MobileNetV2
 - Enhanced dataset using data augmentation to prevent overfitting
 - Optimized model deployment via TensorFlow Lite
 - Built and deployed a production-ready API using FastAPI, Docker, and AWS EC2
 - Understood the full ML lifecycle: Data → Model → Deployment
--
 
 ---
 
