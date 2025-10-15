@@ -83,6 +83,7 @@ converter.target_spec.supported_ops = [
     tf.lite.OpsSet.SELECT_TF_OPS
 ]
 tflite_model = converter.convert()
+```
 
 ----
 
@@ -133,18 +134,18 @@ tflite_model = converter.convert()
 ----
 
 ## 📦 Docker Commands
-
-- Build the image
+```python
+#Build the image
 docker build -t surface_defect_api:v1  .
 
-- Run locally
+#Run locally
 docker run -p 8000:8000 surface_defect_api:v1
 
-- Tag and push to Docker Hub
+#Tag and push to Docker Hub
 docker tag surface_defect_api:v1 arafatmahmood12/surface_defect_api:v1
 
 docker push arafatmahmood12/surface_defect_api:v1
-
+```
 ---
 
 ##💡 Key Learnings
