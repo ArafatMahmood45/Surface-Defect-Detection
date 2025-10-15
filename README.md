@@ -17,16 +17,6 @@
 
 ---
 
-# 🧠 Surface Defect Detection using Transfer Learning (MobileNetV2)
-
-### 🚀 End-to-End Machine Learning Project  
-**TensorFlow • TFLite • FastAPI • Docker • AWS EC2 • Hugging Face Spaces**
-
-This project demonstrates an **end-to-end ML and MLOps pipeline** — from model training to production deployment.  
-It focuses on detecting and classifying **surface defects on steel materials** using **transfer learning**, **TensorFlow Lite optimization**, and **cloud deployment** via **AWS EC2** and **Hugging Face Spaces**.
-
----
-
 ## 📊 Dataset
 
 - **Source:** [NEU Surface Defect Database (Kaggle)](https://www.kaggle.com/datasets/kaustubhdikshit/neu-surface-defect-database)  
